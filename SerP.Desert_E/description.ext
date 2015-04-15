@@ -1,11 +1,11 @@
 #include "SerP\header.hpp"
-//#include "mission.sqm"
 
 class SerP_const {
 	#include "const.hpp"
 };
+
 class Params {
-#include "SerP\params_default.hpp"
-//здесь можно описать дополнительные параметры игры
+	#include "SerP\params_default.hpp"
+	//здесь можно описать дополнительные параметры игры
 };
 

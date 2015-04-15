@@ -17,6 +17,7 @@ if ((SerP_loading==2)&&(time<60)&&!((player == leader group player)||(serverComm
 _veh = (vehicle player);
 openMap [true,true];
 _veh enableSimulation false;
+if (vehicle player != player && {!isNil {(vehicle player) getVariable "CREW_GETININDEX"}}) then { [[(vehicle player),"",player],(vehicle player) getVariable "CREW_GETININDEX"] call isCrew};
 _blocker2 = (findDisplay 46) displayAddEventHandler ["MouseButtonDown", '
 	[0,-1] call ace_sys_weaponselect_fnc_keypressed;
 	false

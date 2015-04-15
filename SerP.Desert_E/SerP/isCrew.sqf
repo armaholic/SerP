@@ -19,7 +19,12 @@
 		_=[this,"driver","gunner","commander",BalCaon] execvm "SerP\isCrew.sqf";
 		_=[this,"driver","gunner","commander","balcaoff",weST] execvm "SerP\isCrew.sqf";
 		_=[this,"driver","gunner","commander","balcaon","east"] execvm "SerP\isCrew.sqf";
-	
+		
+	Добавление дополнительных классов в init.sqf
+		if (!isDedicated) then {
+  			relCrew = [];
+  			relCommander = [];
+  		};	
 */
 
 #define CfgAir (configFile >> "CfgVehicles" >>(typeOf _unitToCheck) >> "ace_ispilot")
