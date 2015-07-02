@@ -4,7 +4,7 @@ c_balca_balca_enabled = false;
 // таймер на завершение миссии по времени
 if (isServer) then {
   [] spawn {
-   waitUntil { sleep 0.3; warbegins == 1 };
+   waitUntil { sleep 0.3; !isNil "warbegins" && {warbegins == 1} };
    _missionTime = 9000; // время в секундах
    _endMessage = "Время вышло!";
    _srv_gameStart = diag_tickTime;
