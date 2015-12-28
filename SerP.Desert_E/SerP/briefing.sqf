@@ -73,7 +73,7 @@ switch true do {
 		{if ((_x select 1)!="") then {
 			player createDiaryRecord ["diary", [(_x select 0),(_x select 1)]]
 		}} forEach [
-			[localize "machinery_title",(localize "machinery_rf")+_vehText],
+			[localize "machinery_title",(localize "machinery_rf")],
 			[localize "enemy_title",localize "enemy_rf"],
 			[localize "execution_title",localize "execution_rf"],
 			[localize "task_title",localize "task_rf"],
@@ -84,7 +84,7 @@ switch true do {
 		{if ((_x select 1)!="") then {
 			player createDiaryRecord ["diary", [(_x select 0),(_x select 1)]]
 		};} forEach [
-			[localize "machinery_title",(localize "machinery_bf")+_vehText],
+			[localize "machinery_title",(localize "machinery_bf")],
 			[localize "enemy_title",localize "enemy_bf"],
 			[localize "execution_title",localize "execution_bf"],
 			[localize "task_title",localize "task_bf"],
@@ -95,7 +95,7 @@ switch true do {
 		{if ((_x select 1)!="") then {
 			player createDiaryRecord ["diary", [(_x select 0),(_x select 1)]]
 		};} forEach [
-			[localize "machinery_title",(localize "machinery_guer")+_vehText],
+			[localize "machinery_title",(localize "machinery_guer")],
 			[localize "enemy_title",localize "enemy_guer"],
 			[localize "execution_title",localize "execution_guer"],
 			[localize "task_title",localize "task_guer"],

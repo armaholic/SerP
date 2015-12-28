@@ -2,13 +2,7 @@
 
 __debug(start)
 enableSaving [false, false];
-//process parameters
-for [ { _i = 0 }, { _i < count(paramsArray) }, { _i = _i + 1 } ] do	{
-	_paramName =(configName ((missionConfigFile >> "Params") select _i));
-	_paramValue = (paramsArray select _i);
-	_paramCode = ( getText (missionConfigFile >> "Params" >> _paramName >> "code"));
-	call compile format[_paramCode, _paramValue];
-};
+
 //init global variables
 if (isClass(configFile >> "cfgPatches" >> "ace_main")) then {
 	ace_sys_wounds_enabled = true;
@@ -29,7 +23,9 @@ if (isClass(configFile >> "cfgPatches" >> "ace_main")) then {
 
 enableEngineArtillery false;
 
-//functions
+//// FUNCTIONS
+SerP_blnd_fnc_GetParam = compile preprocessFileLineNumbers "SerP\Functions\fn_GetParam.sqf";
+
 SerP_msg = {//["Hello world!",west] call SerP_msg;
 		if (count(_this)==2) then {
 			if ((side player)==(_this select 1)) then {
@@ -88,9 +84,6 @@ if (isServer) then {
 	};
 
 	[] call compile preprocessFileLineNumbers "SerP\setMissionConditions.sqf";
-	if isNil{briefing_mode} then {
-		briefing_mode = 1;publicVariable "briefing_mode";
-	};
 };
 //client
 if (!isDedicated) then {
@@ -136,6 +129,5 @@ if (!isDedicated) then {
 		} forEach _toCreate;
 	};
 };
-
 
 __debug(end)

@@ -9,3 +9,6 @@ class Params {
 	//здесь можно описать дополнительные параметры игры
 };
 
+class RscTitles {
+	#include "Dialogs\rsc_counter.hpp"
+};

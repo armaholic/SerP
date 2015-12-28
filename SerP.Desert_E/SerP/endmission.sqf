@@ -1,7 +1,8 @@
 #include "const.sqf"
 
-if (isNil{SerP_endMissionToggle}) then {SerP_endMissionToggle = 1;};
-if (SerP_endMissionToggle==0) exitWith {SerP_endMission = {}};
+_endMissionToggle = ["endMission", 1] call SerP_blnd_fnc_GetParam;
+if (_endMissionToggle == 0) exitWith {SerP_endMission = {}};
+
 //инициализируем функции
 SerP_processorEND = {
 	SerP_endMission = {};

@@ -2,8 +2,6 @@
 
 __debug(start)
 if (isServer) then {
-	_publicVars = ["timeOfDay","weather","briefing_mode","warbegins","readyarray","startZones","SerP_end","SerP_markerCount"];
-	{publicVariable _x} forEach _publicVars;
 	[] call compile preprocessFileLineNumbers "SerP\startmission_server.sqf";
 };
 if (!isDedicated) then {
@@ -19,7 +17,9 @@ if (!isDedicated) then {
 	enableRadio false;
 	[["AllVehicles"], [ace_sys_interaction_key], 2, ["SerP\interactionMenu.sqf", "main"]] call CBA_ui_fnc_add;
 	[["player"], [ace_sys_interaction_key_self], 2, ["SerP\selfInteractionMenu.sqf", "main"]] call CBA_ui_fnc_add;
-	if (isNil{SerP_spectatorLimitations} || SerP_spectatorLimitations == 1) then {
+
+	_spectatorLimits = ["spectator", 1] call SerP_blnd_fnc_GetParam;
+	if (_spectatorLimits == 1) then {
 		//disable spectator's map
 		ace_sys_spectator_ShownSides = [playerSide];
 		ace_sys_spectator_fnc_startSpectator_old = ace_sys_spectator_fnc_startSpectator;

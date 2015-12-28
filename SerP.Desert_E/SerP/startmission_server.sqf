@@ -1,34 +1,31 @@
 #include "const.sqf"
 __debug(start)
-if (count(playableUnits)==0) exitWith {};
+if (!isMultiplayer) exitWith {};
+
 trashArray = [];
 planeList = [];
-_bCounter = {
-	_briefingTime = (_this select 0);
-	warbegins = 0;publicVariable "warbegins";
-	waitUntil{
-		[format ["%1 minutes remaining",_briefingTime]] call SerP_msg;
-		_waitTime = diag_tickTime + 60;
-		waitUntil{sleep 5;diag_tickTime>_waitTime};
-		_briefingTime = _briefingTime - 1;
-		(_briefingTime<1)||(warbegins==1)
-	};
-	warbegins = 1;publicVariable "warbegins";
-};
-switch (briefing_mode) do	{
+
+warbegins = 0;
+publicVariable "warbegins";
+
+readyArray = [false,false];
+publicVariable "readyArray";
+
+_fnc_srv_counter = compile preprocessFileLineNumbers "SerP\Functions\fn_Srv_Counter.sqf";
+
+_briefing_mode = ["briefing_mode", 1] call SerP_blnd_fnc_GetParam;
+switch (_briefing_mode) do	{
 	case 0:	{
-		[3] spawn _bCounter;
+		[3] spawn _fnc_srv_counter;
 	};
 	case 1:	{
-		[7] spawn _bCounter;
+		[7] spawn _fnc_srv_counter;
 	};
 	case 2:	{
-		[15] spawn _bCounter;
+		[15] spawn _fnc_srv_counter;
 	};
 };
 
-warbegins = 0;publicVariable "warbegins";
-readyArray = [false,false];publicVariable "readyArray";
 //find zones
 _zones = [];//[_pos,_size,_unitsInZone,_side]
 _hintzonesize = __hintzonesize;
@@ -247,7 +244,6 @@ call SerP_commitMarkers;
 				deleteVehicle _x;
 			}} forEach playableUnits;
 		};
-		taskHint ["War begins", [1, 0, 0, 1], "taskNew"];
 		{
 			if (local _x) then {
 				switch true do {
